@@ -8,7 +8,9 @@
   <body>
     <button id="new">QUADRADO</button>
     <div id="squares"></div>
-    <ul></ul>
+      <ul></ul>
+      <input type="text" name="nome">
+      <button onClick="adicionar()">Adicionar</button>
     <script>
       /*
       * Parte 1
@@ -38,11 +40,28 @@
       *
       * */
 
+      /*
+      * Parte 4
+      * Seguindo o resultado do exercicio anterior adicione um input em tela
+      * e um botão como a seguir
+      *
+      * <input type="text" name="nome">
+      * <button onClick="adicionar()">Adicionar</button>
+      * 
+      * Ao clicar no botão, a função adicionar() deve ser disparada adicionando 
+      * um novo item a lista de nomes baseado no nome preenchido no input e 
+      * renderizando o novo item em tela juntos aos demais itens anteriores. 
+      *
+      * Além disso, o conteúdo do input deve ser apagado após o clique.
+      *
+      * */
+
 
       var btnElement = document.getElementById('new');
       var squaresElement = document.getElementById('squares');
       var nomes = ["Diego", "Gabriel", "Lucas"];
       var listaElement = document.querySelector('ul');
+      var inputElement = document.querySelector('input');
 
       btnElement.onclick = function(){
           var squares = document.createElement('div');
@@ -66,14 +85,23 @@
         return color;
       }
 
-      for(nome of nomes){
+      function addItem(texto){
         var liElement = document.createElement('li');
-        var textElement = document.createTextNode(nome);
+        var textElement = document.createTextNode(texto);
+
         liElement.appendChild(textElement);
         listaElement.appendChild(liElement);
+      }
+
+      function adicionar(){
+        addItem(inputElement.value);
+        inputElement.value = ""; // limpa o campo imput
+      }
+
+      for(nome of nomes){
+        addItem(nome);
       }      
       
-
     </script>
 
   </body>
